@@ -3,7 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Article;
 use App\Models\Post;
+use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,43 +16,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $post =  collect([
-            [
-                'title' => 'Post One',
-                'slug' => 'post-one',
-                'excerpt' => 'Excerpt of post one',
-                'description' => 'Description of post one',
-                'is_published' => true,
-                'min_to_read' => 2,
-            ],
-            [
-                'title' => 'Post Two',
-                'slug' => 'post-two',
-                'excerpt' => 'Excerpt of post two',
-                'description' => 'Description of post two',
-                'is_published' => true,
-                'min_to_read' => 2,
-            ],
-            [
-                'title' => 'Post Three',
-                'slug' => 'post-three',
-                'excerpt' => 'Excerpt of post three',
-                'description' => 'Description of post three',
-                'is_published' => true,
-                'min_to_read' => 2,
-            ]
-        ]);
-        foreach ( $post as $post) {
-            Post::create($post);
-        }
-
-
-
-
-
-
-
-
+        $this->call(CategorySeeder::class);
+        User::factory()->count(10)->create();
+        Article::factory()
+            ->has(Tag::factory()->count(2))
+            ->count(50)
+            ->create();
 
     }
 }
