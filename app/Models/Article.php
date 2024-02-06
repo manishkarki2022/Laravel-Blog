@@ -12,6 +12,11 @@ class Article extends Model
     protected $fillable = [
         'name','excerpt','description','status','user_id','category_id'
     ];
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
 
     public function user():BelongsTo
     {
