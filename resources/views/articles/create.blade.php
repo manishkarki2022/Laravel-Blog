@@ -1,12 +1,12 @@
 <x-app-layout>
-    <div class="py-12">
+    <div class="py-12 bg-gray-100">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <h2 class="font-bold text-xl mx-auto text-gray-900 dark:text-gray-100 pb-4">
                 Create a new Article
             </h2>
 
             <div class="w-full mx-auto mb-10">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-gray dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <form method="post"
                           action="{{ route('articles.store') }}"
                           class="px-8  mt-6 space-y-6">

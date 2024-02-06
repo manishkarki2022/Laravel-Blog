@@ -2,6 +2,15 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="w-full mx-auto mb-10">
+                <span class="block inline text-md text-white transition-all hover:text-gray-100 font-bold uppercase">
+                    <a href="{{ route('articles.create') }}" class="bg-red-700 rounded-md py-3 px-5">
+                        Create Article
+                    </a>
+
+                </span>
+
+            </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 ">
                   <h2 class="font-bold test-xl">
