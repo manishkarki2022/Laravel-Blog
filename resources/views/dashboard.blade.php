@@ -19,7 +19,12 @@
                     <div class="pt-4">
                         @forelse($articles as $article)
                             <div>
-                                <a href="{{route('$articles.show',$article->slug)}}">
+                                <a href="{{route('articles.edit',$article->slug)}}" class="inline-flex text-md pb-6 pt-8 items-center py-2 leading-4 font-medium rounded-md text-orange-400 hover:text-orange-300 focus:outline-none transition ease-in-out duration-150 float-right">
+                                    Update
+                                </a>
+                            </div>
+                            <div>
+                                <a href="{{route('articles.show',$article->slug)}}">
                                     <h2 class="inline-flex text-lg pb-6 pt-8 items-center py-2 leading-4 font-medium rounded-md text-gray-400 hover:text-gray-400 focus:outline-none transition ease-in-out duration-150">
                                             {{$article->title}}
                                         <span class="italic test-gray-600 text-sm pl-2">

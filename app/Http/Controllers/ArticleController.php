@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreArticleRequest;
+use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Tag;
@@ -24,9 +25,7 @@ class ArticleController extends Controller
     }
     public function create()
     {
-        $categories = Category::pluck('name','id');
-        $tags = Tag::pluck('name','id');
-        return view('articles.create',compact('categories','tags'));
+        return view('articles.create',$this->getFormData());
     }
     public function store(StoreArticleRequest $request)
     {
@@ -44,5 +43,36 @@ class ArticleController extends Controller
              ->with('message','Article Created Successfully');
 
 
+    }
+    public function edit(Article $article)
+    {
+        return view('articles.edit',array_merge(compact('article'),
+            $this->getFormData()));
+    }
+    public function update(UpdateArticleRequest $request, Article $article)
+    {
+        $article->update($request->validated() + [
+                'slug' => Str::slug($request->title)]);
+
+        $article->tags()->sync($request->tags);
+
+        return redirect(route('dashboard'))->with('message', 'Article has successfully been updated');
+    }
+
+    public function destroy(Article $article)
+    {
+        $article->delete();
+
+        return redirect(route('dashboard'))->with('message', 'Article has successfully been deleted.');
+    }
+
+
+
+
+    public function getFormData()
+    {
+        $categories = Category::pluck('name','id');
+        $tags = Tag::pluck('name','id');
+        return compact('categories', 'tags');
     }
 }
